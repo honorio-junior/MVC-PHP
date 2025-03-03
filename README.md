@@ -140,7 +140,7 @@ Este projeto implementa uma estrutura básica do padrão **MVC (Model-View-Contr
 - **Visão (View)**: A visão, por meio da classe `RenderView`, exibe os dados de forma formatada para o usuário.
 
 Embora este seja um projeto simples e básico, ele pode ser facilmente expandido com novas funcionalidades, como:
-- Melhorias no core da projeto.
+- Melhorias no core do projeto.
 - Adição de mais modelos para outras tabelas e entidades.
 - Implementação de autenticação de usuários e controle de sessões.
 - Expansão das funcionalidades de consulta no banco de dados.
