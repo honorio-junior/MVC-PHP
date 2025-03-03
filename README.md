@@ -17,7 +17,7 @@ A estrutura de diretórios é organizada da seguinte forma:
     |
     public/
         |
-        index.php
+        index.php => core mvc
         |
         src/
     |
