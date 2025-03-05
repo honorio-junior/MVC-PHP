@@ -143,7 +143,7 @@ cole o codigo abaixo:
 ```docker-compose
 services:
   app:
-    image: php:8.3-cli
+    image: php:8.4-cli
     volumes:
       - ./:/app
     working_dir: /app
