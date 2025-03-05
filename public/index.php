@@ -1,5 +1,6 @@
 <?php
 
+require_once dirname(__DIR__) . '/autoload.php';
 $route = $_SERVER['REQUEST_URI'];
 $route = trim($route, '/');
 $route = empty($route) ? '/' : '/' . $route;

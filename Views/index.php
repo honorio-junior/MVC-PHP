@@ -19,5 +19,6 @@
     <br>
     GET = method
     <br>
+    <!-- <?= var_dump($users) ?> -->
 </body>
 </html>

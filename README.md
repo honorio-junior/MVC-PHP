@@ -55,68 +55,49 @@ No arquivo `routes.php`, é definida uma rota simples:
 - **Controller**: O método `index()` do controlador é chamado, onde pode ser manipulado um `Model` e retornar uma view para o usuário.
 - **View**: O controlador retorna a view associada (por exemplo, `Views/index.php`).
 
-## Como Funciona o `HomeController`
+## Estrutura do Controller
 
-O **HomeController** é responsável por processar as requisições para a página inicial e renderizar a view correspondente.
-
-### Estrutura do Controlador
+O **Controller** é responsável por processar as requisições para a página inicial e renderizar a view correspondente.
 
 O controlador `HomeController.php` está localizado no diretório `/Controllers`, e o código é o seguinte:
 
 ```php
 namespace Controllers;
 
-require_once dirname(__DIR__) . '/autoload.php';
-
 use Models\UserModel;
-use Views\RenderView;
 
-class HomeController
+class HomeController extends BaseController
 {
     function index()
     {
         $db = new UserModel;
         $users = $db->getAll();
-        return new RenderView('index', ["users" => $users]);
+        return $this->view('index', ['users' => $users]);
     }
 }
 ```
 
-#### Acesso as models `use Models/UserModel;`
-
-A classe `UserModel` estará disponivel da seguinte forma:
-```php
-$db = new UserModel;
-```
-
-#### O que é RenderView?
-
-A classe `RenderView` é responsável por renderizar a view correspondente. No exemplo acima, ela é chamada com o argumento 'index', o que significa que ela irá carregar o arquivo `Views/index.php` e exibir o conteúdo dessa página.
-
 É possivel passar variáveis para essa view da seguinte forma:
+
 ```php
-return new RenderView('index', ["var1" => $x, "var2" => $y]);
+return $this->view('index', ['var1' => '1234']);
 ```
 
 Estará disponivel da view como:
 ```html
-<?php echo $var1 ?>
+<?php echo $var1 ?> // 1234
+
 ```
 
 ## Estrutura do Modelo
 
-O código do `UserModel` é o seguinte:
+O modelo `UserModel.php` está localizado no diretório `/Models`, e o código é o seguinte:
 
 ```php
 namespace Models;
 
-class UserModel extends \SQLite3
+class UserModel extends BaseModel
 {
-    function __construct()
-    {
-        $this->open( __DIR__ .'/database.sqlite');
-    }
-
     function getAll()
     {
          $result = $this->query('SELECT * FROM user');
@@ -128,7 +109,6 @@ class UserModel extends \SQLite3
     }
 }
 ```
-> O `UserModel` fornece uma forma simples de se conectar a um banco de dados `SQLite` e acessar os dados de usuários. Embora o método `getAll()` não esteja implementado completamente, ele serve como base para recuperar todos os registros de usuários da tabela user. Em um projeto mais avançado, você pode expandir esse modelo para incluir métodos de criação, atualização e exclusão de usuários.
 
 ## Conclusão
 

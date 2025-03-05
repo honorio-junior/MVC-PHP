@@ -1,17 +1,15 @@
 <?php
 namespace Controllers;
 
-require_once dirname(__DIR__) . '/autoload.php';
-
 use Models\UserModel;
-use Views\RenderView;
 
-
-class HomeController
+class HomeController extends BaseController
 {
     function index()
     {
-        return new RenderView('index');
+        $db = new UserModel;
+        $users = $db->getAll();
+        return $this->view('index', ['users' => $users]);
     }
 
 }
